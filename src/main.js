@@ -92,6 +92,8 @@ class MyTelegramBot extends HtmlTelegramBot {
         const query = callbackQuery.data;
         const prompt = this.loadPrompt(query)
         const userChatHistory = this.list.join("\n\n")
+        // отчищаем list
+        this.list = [];
         const answer = await chatgpt.sendQuestion(prompt, userChatHistory)
         await this.editText(myMessage, answer)
     }
